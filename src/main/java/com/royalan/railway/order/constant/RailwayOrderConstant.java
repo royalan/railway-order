@@ -8,7 +8,5 @@ public class RailwayOrderConstant {
 
 	public static final String host = "http://railway.hinet.net/";
 	public static final String sendOrderUrl = "http://railway.hinet.net/check_ctno1.jsp";
-	public static final String sendVerifyUrlNov = "http://railway.hinet.net/order_no1.jsp";
-	public static final String sendVerifyUrl = "http://railway.hinet.net/ctno11.jsp";
 
 }

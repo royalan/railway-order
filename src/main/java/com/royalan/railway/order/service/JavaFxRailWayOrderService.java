@@ -26,6 +26,8 @@ public class JavaFxRailWayOrderService {
 	private HttpURLConnection sendOrderConn;
 	private HttpURLConnection randVerifyConn;
 
+	private String verifyPage;
+
 	/**
 	 * Send order request.
 	 * 
@@ -53,7 +55,9 @@ public class JavaFxRailWayOrderService {
 
 		// Get response body
 		String respBody = this.getResponseBody(sendOrderConn.getInputStream(), "Big5");
-		// System.out.println(respBody);
+		int subBeginIdx = respBody.indexOf("action") + 8;
+		verifyPage = respBody.substring(subBeginIdx, respBody.indexOf("\"", subBeginIdx));
+		System.out.println("verifyPage : " + verifyPage);
 
 		// Get session id.
 		int fromIdx = respBody.indexOf("jsessionid") + 11;
@@ -99,15 +103,9 @@ public class JavaFxRailWayOrderService {
 	 * @throws Exception
 	 */
 	public String sendVerifyRequest(String input, String cookie, OrderRequestDTO reqParamObj) throws Exception {
-		if (reqParamObj.getGetInDate().getMonth().getValue() == 11) {
-			randVerifyConn = (HttpURLConnection) new URL(
-					RailwayOrderConstant.sendVerifyUrlNov + "?" + this.getOrderParams(input, reqParamObj))
-							.openConnection();
-		} else {
-			randVerifyConn = (HttpURLConnection) new URL(
-					RailwayOrderConstant.sendVerifyUrl + "?" + this.getOrderParams(input, reqParamObj))
-							.openConnection();
-		}
+		randVerifyConn = (HttpURLConnection) new URL(
+				RailwayOrderConstant.host + verifyPage + "?" + this.getOrderParams(input, reqParamObj))
+						.openConnection();
 
 		// optional default is GET
 		randVerifyConn.setRequestMethod("GET");
