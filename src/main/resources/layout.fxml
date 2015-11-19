@@ -9,50 +9,359 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane fx:id="pane_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.royalan.railway.order.controller.JavaFxController">
-  <tabs>
-    <Tab fx:id="tb_order" text="Raiway Order">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="tf_personId" layoutX="110.0" layoutY="26.0" prefHeight="23.0" prefWidth="135.0" />
-                  <DatePicker fx:id="dp_getInDate" layoutX="110.0" layoutY="61.0" prefHeight="23.0" prefWidth="135.0" />
-                  <ChoiceBox fx:id="cb_fromStation" layoutX="291.0" layoutY="26.0" prefHeight="23.0" prefWidth="113.0">
-   						<String fx:value="100" />
-   						<String fx:value="102" />
-   						<String fx:value="004" />
-                  </ChoiceBox>
-                  <ChoiceBox fx:id="cb_toStation" layoutX="291.0" layoutY="61.0" prefHeight="23.0" prefWidth="113.0">
-   					  <String fx:value="100" />
-   					  <String fx:value="102" />
-   					  <String fx:value="004" />
-                  </ChoiceBox>
-                  <TextField fx:id="tf_trainNo" layoutX="457.0" layoutY="26.0" prefHeight="23.0" prefWidth="89.0" />
-                  <TextField fx:id="tf_orderQty" layoutX="457.0" layoutY="61.0" onKeyPressed="#submitOrder" prefHeight="23.0" prefWidth="89.0" />
-                  <ImageView fx:id="iv_randInput" fitHeight="80.0" fitWidth="220.0" layoutX="35.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextField fx:id="tf_randInput" layoutX="55.0" layoutY="200.0" onKeyPressed="#submitRandInput" prefHeight="23.0" prefWidth="180.0" />
-                  <Button fx:id="btn_submit" layoutX="462.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#submitOrder" prefHeight="23.0" prefWidth="80.0" text="訂票" />
-                  <Text fx:id="t_personId" layoutX="35.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="身份證字號" />
-                  <Text fx:id="t_getInDate" layoutX="35.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="搭車日期" />
-                  <Text fx:id="t_fromStation" layoutX="260.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="起站" />
-                  <Text fx:id="t_toStation" layoutX="260.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="迄站" />
-                  <Text fx:id="t_trainNo" layoutX="420.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="車次" />
-                  <Text fx:id="t_orderQty" layoutX="420.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="數量" />
-                  <Text fx:id="t_message" layoutX="258.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Message" wrappingWidth="179.12109375" />
-               </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab fx:id="tb_about" text="About">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="140.0" layoutY="159.0" text="© Carl All Rights Reserved">
-                     <font>
-                        <Font name="Jokerman" size="24.0" />
-                     </font>
-                  </Label>
-               </children></AnchorPane>
-      </content>
-    </Tab>
-  </tabs>
+<TabPane fx:id="pane_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+	prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.royalan.railway.order.controller.JavaFxController">
+	<tabs>
+		<Tab fx:id="tb_order" text="Raiway Order">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+					<children>
+						<TextField fx:id="tf_personId" layoutX="110.0" layoutY="26.0" prefHeight="23.0" prefWidth="135.0" />
+						<DatePicker fx:id="dp_getInDate" layoutX="110.0" layoutY="61.0" prefHeight="23.0" prefWidth="135.0" />
+						<ChoiceBox fx:id="cb_fromStation" layoutX="291.0" layoutY="26.0" prefHeight="23.0" prefWidth="113.0">
+							<String fx:value="台東" />
+							<String fx:value="鹿野" />
+							<String fx:value="瑞源" />
+							<String fx:value="關山" />
+							<String fx:value="池上" />
+							<String fx:value="富里" />
+							<String fx:value="東竹" />
+							<String fx:value="東里" />
+							<String fx:value="玉里" />
+							<String fx:value="瑞穗" />
+							<String fx:value="富源" />
+							<String fx:value="光復" />
+							<String fx:value="萬榮" />
+							<String fx:value="鳳林" />
+							<String fx:value="南平" />
+							<String fx:value="豐田" />
+							<String fx:value="壽豐" />
+							<String fx:value="志學" />
+							<String fx:value="吉安" />
+							<String fx:value="花蓮" />
+							<String fx:value="北埔" />
+							<String fx:value="新城" />
+							<String fx:value="崇德" />
+							<String fx:value="和仁" />
+							<String fx:value="和平" />
+							<String fx:value="南澳" />
+							<String fx:value="東澳" />
+							<String fx:value="蘇澳" />
+							<String fx:value="蘇澳新" />
+							<String fx:value="冬山" />
+							<String fx:value="羅東" />
+							<String fx:value="二結" />
+							<String fx:value="宜蘭" />
+							<String fx:value="四城" />
+							<String fx:value="礁溪" />
+							<String fx:value="頭城" />
+							<String fx:value="龜山" />
+							<String fx:value="大溪" />
+							<String fx:value="大里" />
+							<String fx:value="褔隆" />
+							<String fx:value="貢寮" />
+							<String fx:value="雙溪" />
+							<String fx:value="牡丹" />
+							<String fx:value="三貂嶺" />
+							<String fx:value="猴硐" />
+							<String fx:value="瑞芳" />
+							<String fx:value="四腳亭" />
+							<String fx:value="基隆" />
+							<String fx:value="八堵" />
+							<String fx:value="七堵" />
+							<String fx:value="汐止" />
+							<String fx:value="南港" />
+							<String fx:value="松山" />
+							<String fx:value="台北" />
+							<String fx:value="萬華" />
+							<String fx:value="板橋" />
+							<String fx:value="樹林" />
+							<String fx:value="山佳" />
+							<String fx:value="鶯歌" />
+							<String fx:value="桃園" />
+							<String fx:value="內壢" />
+							<String fx:value="中壢" />
+							<String fx:value="埔心" />
+							<String fx:value="楊梅" />
+							<String fx:value="富岡" />
+							<String fx:value="湖口" />
+							<String fx:value="新豐" />
+							<String fx:value="竹北" />
+							<String fx:value="新竹" />
+							<String fx:value="竹南" />
+							<String fx:value="談文" />
+							<String fx:value="大山" />
+							<String fx:value="後龍" />
+							<String fx:value="白沙屯" />
+							<String fx:value="新埔" />
+							<String fx:value="通霄" />
+							<String fx:value="苑裡" />
+							<String fx:value="日南" />
+							<String fx:value="大甲" />
+							<String fx:value="台中港" />
+							<String fx:value="清水" />
+							<String fx:value="沙鹿" />
+							<String fx:value="龍井" />
+							<String fx:value="大肚" />
+							<String fx:value="追分" />
+							<String fx:value="造橋" />
+							<String fx:value="苗栗" />
+							<String fx:value="銅鑼" />
+							<String fx:value="三義" />
+							<String fx:value="泰安" />
+							<String fx:value="后里" />
+							<String fx:value="豐原" />
+							<String fx:value="潭子" />
+							<String fx:value="台中" />
+							<String fx:value="烏日" />
+							<String fx:value="成功" />
+							<String fx:value="彰化" />
+							<String fx:value="花壇" />
+							<String fx:value="員林" />
+							<String fx:value="社頭" />
+							<String fx:value="田中" />
+							<String fx:value="二水" />
+							<String fx:value="林內" />
+							<String fx:value="斗六" />
+							<String fx:value="斗南" />
+							<String fx:value="大林" />
+							<String fx:value="民雄" />
+							<String fx:value="嘉義" />
+							<String fx:value="水上" />
+							<String fx:value="後壁" />
+							<String fx:value="新營" />
+							<String fx:value="林鳳營" />
+							<String fx:value="隆田" />
+							<String fx:value="拔林" />
+							<String fx:value="善化" />
+							<String fx:value="新市" />
+							<String fx:value="永康" />
+							<String fx:value="台南" />
+							<String fx:value="保安" />
+							<String fx:value="中洲" />
+							<String fx:value="大湖" />
+							<String fx:value="路竹" />
+							<String fx:value="岡山" />
+							<String fx:value="橋頭" />
+							<String fx:value="楠梓" />
+							<String fx:value="左營" />
+							<String fx:value="高雄" />
+							<String fx:value="鳳山" />
+							<String fx:value="後庄" />
+							<String fx:value="九曲堂" />
+							<String fx:value="屏東" />
+							<String fx:value="西勢" />
+							<String fx:value="竹田" />
+							<String fx:value="潮州" />
+							<String fx:value="南州" />
+							<String fx:value="林邊" />
+							<String fx:value="佳冬" />
+							<String fx:value="枋寮" />
+							<String fx:value="加祿" />
+							<String fx:value="大武" />
+							<String fx:value="瀧溪" />
+							<String fx:value="金崙" />
+							<String fx:value="太麻里" />
+							<String fx:value="知本" />
+							<String fx:value="康樂" />
+							<String fx:value="大慶" />
+							<String fx:value="十分" />
+							<String fx:value="平溪" />
+							<String fx:value="內灣" />
+							<String fx:value="車埕" />
+							<String fx:value="新烏日" />
+							<String fx:value="南科" />
+							<String fx:value="新左營" />
+						</ChoiceBox>
+						<ChoiceBox fx:id="cb_toStation" layoutX="291.0" layoutY="61.0" prefHeight="23.0" prefWidth="113.0">
+							<String fx:value="台東" />
+							<String fx:value="鹿野" />
+							<String fx:value="瑞源" />
+							<String fx:value="關山" />
+							<String fx:value="池上" />
+							<String fx:value="富里" />
+							<String fx:value="東竹" />
+							<String fx:value="東里" />
+							<String fx:value="玉里" />
+							<String fx:value="瑞穗" />
+							<String fx:value="富源" />
+							<String fx:value="光復" />
+							<String fx:value="萬榮" />
+							<String fx:value="鳳林" />
+							<String fx:value="南平" />
+							<String fx:value="豐田" />
+							<String fx:value="壽豐" />
+							<String fx:value="志學" />
+							<String fx:value="吉安" />
+							<String fx:value="花蓮" />
+							<String fx:value="北埔" />
+							<String fx:value="新城" />
+							<String fx:value="崇德" />
+							<String fx:value="和仁" />
+							<String fx:value="和平" />
+							<String fx:value="南澳" />
+							<String fx:value="東澳" />
+							<String fx:value="蘇澳" />
+							<String fx:value="蘇澳新" />
+							<String fx:value="冬山" />
+							<String fx:value="羅東" />
+							<String fx:value="二結" />
+							<String fx:value="宜蘭" />
+							<String fx:value="四城" />
+							<String fx:value="礁溪" />
+							<String fx:value="頭城" />
+							<String fx:value="龜山" />
+							<String fx:value="大溪" />
+							<String fx:value="大里" />
+							<String fx:value="褔隆" />
+							<String fx:value="貢寮" />
+							<String fx:value="雙溪" />
+							<String fx:value="牡丹" />
+							<String fx:value="三貂嶺" />
+							<String fx:value="猴硐" />
+							<String fx:value="瑞芳" />
+							<String fx:value="四腳亭" />
+							<String fx:value="基隆" />
+							<String fx:value="八堵" />
+							<String fx:value="七堵" />
+							<String fx:value="汐止" />
+							<String fx:value="南港" />
+							<String fx:value="松山" />
+							<String fx:value="台北" />
+							<String fx:value="萬華" />
+							<String fx:value="板橋" />
+							<String fx:value="樹林" />
+							<String fx:value="山佳" />
+							<String fx:value="鶯歌" />
+							<String fx:value="桃園" />
+							<String fx:value="內壢" />
+							<String fx:value="中壢" />
+							<String fx:value="埔心" />
+							<String fx:value="楊梅" />
+							<String fx:value="富岡" />
+							<String fx:value="湖口" />
+							<String fx:value="新豐" />
+							<String fx:value="竹北" />
+							<String fx:value="新竹" />
+							<String fx:value="竹南" />
+							<String fx:value="談文" />
+							<String fx:value="大山" />
+							<String fx:value="後龍" />
+							<String fx:value="白沙屯" />
+							<String fx:value="新埔" />
+							<String fx:value="通霄" />
+							<String fx:value="苑裡" />
+							<String fx:value="日南" />
+							<String fx:value="大甲" />
+							<String fx:value="台中港" />
+							<String fx:value="清水" />
+							<String fx:value="沙鹿" />
+							<String fx:value="龍井" />
+							<String fx:value="大肚" />
+							<String fx:value="追分" />
+							<String fx:value="造橋" />
+							<String fx:value="苗栗" />
+							<String fx:value="銅鑼" />
+							<String fx:value="三義" />
+							<String fx:value="泰安" />
+							<String fx:value="后里" />
+							<String fx:value="豐原" />
+							<String fx:value="潭子" />
+							<String fx:value="台中" />
+							<String fx:value="烏日" />
+							<String fx:value="成功" />
+							<String fx:value="彰化" />
+							<String fx:value="花壇" />
+							<String fx:value="員林" />
+							<String fx:value="社頭" />
+							<String fx:value="田中" />
+							<String fx:value="二水" />
+							<String fx:value="林內" />
+							<String fx:value="斗六" />
+							<String fx:value="斗南" />
+							<String fx:value="大林" />
+							<String fx:value="民雄" />
+							<String fx:value="嘉義" />
+							<String fx:value="水上" />
+							<String fx:value="後壁" />
+							<String fx:value="新營" />
+							<String fx:value="林鳳營" />
+							<String fx:value="隆田" />
+							<String fx:value="拔林" />
+							<String fx:value="善化" />
+							<String fx:value="新市" />
+							<String fx:value="永康" />
+							<String fx:value="台南" />
+							<String fx:value="保安" />
+							<String fx:value="中洲" />
+							<String fx:value="大湖" />
+							<String fx:value="路竹" />
+							<String fx:value="岡山" />
+							<String fx:value="橋頭" />
+							<String fx:value="楠梓" />
+							<String fx:value="左營" />
+							<String fx:value="高雄" />
+							<String fx:value="鳳山" />
+							<String fx:value="後庄" />
+							<String fx:value="九曲堂" />
+							<String fx:value="屏東" />
+							<String fx:value="西勢" />
+							<String fx:value="竹田" />
+							<String fx:value="潮州" />
+							<String fx:value="南州" />
+							<String fx:value="林邊" />
+							<String fx:value="佳冬" />
+							<String fx:value="枋寮" />
+							<String fx:value="加祿" />
+							<String fx:value="大武" />
+							<String fx:value="瀧溪" />
+							<String fx:value="金崙" />
+							<String fx:value="太麻里" />
+							<String fx:value="知本" />
+							<String fx:value="康樂" />
+							<String fx:value="大慶" />
+							<String fx:value="十分" />
+							<String fx:value="平溪" />
+							<String fx:value="內灣" />
+							<String fx:value="車埕" />
+							<String fx:value="新烏日" />
+							<String fx:value="南科" />
+							<String fx:value="新左營" />
+						</ChoiceBox>
+						<TextField fx:id="tf_trainNo" layoutX="457.0" layoutY="26.0" prefHeight="23.0" prefWidth="89.0" />
+						<TextField fx:id="tf_orderQty" layoutX="457.0" layoutY="61.0" onKeyPressed="#submitOrder" prefHeight="23.0"
+							prefWidth="89.0" />
+						<ImageView fx:id="iv_randInput" fitHeight="80.0" fitWidth="220.0" layoutX="35.0" layoutY="103.0"
+							pickOnBounds="true" preserveRatio="true" />
+						<TextField fx:id="tf_randInput" layoutX="55.0" layoutY="200.0" onKeyPressed="#submitRandInput"
+							prefHeight="23.0" prefWidth="180.0" />
+						<Button fx:id="btn_submit" layoutX="462.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#submitOrder"
+							prefHeight="23.0" prefWidth="80.0" text="訂票" />
+						<Text fx:id="t_personId" layoutX="35.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="身份證字號" />
+						<Text fx:id="t_getInDate" layoutX="35.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="搭車日期" />
+						<Text fx:id="t_fromStation" layoutX="260.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="起站" />
+						<Text fx:id="t_toStation" layoutX="260.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="迄站" />
+						<Text fx:id="t_trainNo" layoutX="420.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="車次" />
+						<Text fx:id="t_orderQty" layoutX="420.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="數量" />
+						<Text fx:id="t_message" layoutX="258.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Message"
+							wrappingWidth="179.12109375" />
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+		<Tab fx:id="tb_about" text="About">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+					<children>
+						<Label layoutX="140.0" layoutY="159.0" text="© Carl All Rights Reserved">
+							<font>
+								<Font name="Jokerman" size="24.0" />
+							</font>
+						</Label>
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+	</tabs>
 </TabPane>

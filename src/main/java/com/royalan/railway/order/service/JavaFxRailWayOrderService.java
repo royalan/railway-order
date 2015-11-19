@@ -9,10 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Properties;
 
 import com.royalan.railway.order.OrderRequestDTO;
 import com.royalan.railway.order.constant.RailwayOrderConstant;
@@ -102,9 +99,15 @@ public class JavaFxRailWayOrderService {
 	 * @throws Exception
 	 */
 	public String sendVerifyRequest(String input, String cookie, OrderRequestDTO reqParamObj) throws Exception {
-
-		randVerifyConn = (HttpURLConnection) new URL(
-				RailwayOrderConstant.sendVerifyUrl + this.getOrderParams(input, reqParamObj)).openConnection();
+		if (reqParamObj.getGetInDate().getMonth().getValue() == 11) {
+			randVerifyConn = (HttpURLConnection) new URL(
+					RailwayOrderConstant.sendVerifyUrlNov + "?" + this.getOrderParams(input, reqParamObj))
+							.openConnection();
+		} else {
+			randVerifyConn = (HttpURLConnection) new URL(
+					RailwayOrderConstant.sendVerifyUrl + "?" + this.getOrderParams(input, reqParamObj))
+							.openConnection();
+		}
 
 		// optional default is GET
 		randVerifyConn.setRequestMethod("GET");
@@ -138,16 +141,16 @@ public class JavaFxRailWayOrderService {
 		} else if (respBody.lastIndexOf("訂票日期錯誤或內容格式錯誤") > 0) {
 			return "訂票日期錯誤或內容格式錯誤";
 		} else if (respBody.lastIndexOf("您的車票已訂到") > 0) {
-			int beginIdx = respBody.indexOf("'>", respBody.indexOf("電腦代碼：")) + 2;
+			int beginIdx = respBody.indexOf("spanOrderCode", respBody.indexOf("電腦代碼：")) + 49;
 			return "您的車票已訂到，代碼：" + respBody.substring(beginIdx, respBody.indexOf("<", beginIdx));
 		} else {
-			throw new RuntimeException("Get unknow message from response body!");
+			return "發生未知錯誤!!請再確認日期與車次!!";
 		}
 	}
 
 	/**
 	 * Get parameters of order request.
-	 * @param reqParamObj TODO
+	 * @param reqParamObj
 	 * @param random
 	 *            input number
 	 *
@@ -170,8 +173,7 @@ public class JavaFxRailWayOrderService {
 	 */
 	private String assamblyReqParams(OrderRequestDTO orderReqObj) throws UnsupportedEncodingException {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-		String getInDate = URLEncoder
-				.encode(orderReqObj.getGetInDate().format(format) + "-" + orderReqObj.getOffsetDays(), "UTF-8");
+		String getInDate = orderReqObj.getGetInDate().format(format) + "-" + orderReqObj.getOffsetDays();
 
 		StringBuffer str = new StringBuffer();
 		str.append("person_id=").append(orderReqObj.getPersonId()).append("&from_station=")
@@ -198,30 +200,6 @@ public class JavaFxRailWayOrderService {
 		in.close();
 
 		return response.toString();
-	}
-
-	/**
-	 * Get default value object from properties file.
-	 * 
-	 * @return OrderRequestDTO
-	 * @throws IOException
-	 */
-	public OrderRequestDTO getDefaultObject() {
-		Properties prop = new Properties();
-		try {
-			prop.load(this.getClass().getResourceAsStream("/railway.properties"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		OrderRequestDTO object = new OrderRequestDTO();
-		object.setPersonId(prop.getProperty("order.default.personId"));
-		object.setFromStation(prop.getProperty("order.default.fromStation"));
-		object.setToStation(prop.getProperty("order.default.toStation"));
-		object.setTrainNo(prop.getProperty("order.default.trainNo"));
-		object.setOrderQty(prop.getProperty("order.default.orderQty"));
-		object.setOffsetDays(prop.getProperty("order.default.getInDay.offset"));
-		object.setGetInDate(LocalDate.now().plusDays(new Long(object.getOffsetDays())));
-		return object;
 	}
 
 }

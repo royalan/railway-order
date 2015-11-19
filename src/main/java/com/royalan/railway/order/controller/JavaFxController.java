@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import com.royalan.railway.order.OrderRequestDTO;
 import com.royalan.railway.order.service.JavaFxRailWayOrderService;
+import com.royalan.railway.order.util.InitializeUtils;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -41,7 +42,7 @@ public class JavaFxController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.orderService = new JavaFxRailWayOrderService();
-		this.setDefaultValue(orderService.getDefaultObject());
+		this.setDefaultValue(InitializeUtils.defaultReqObj);
 	}
 
 	@FXML
@@ -91,8 +92,8 @@ public class JavaFxController implements Initializable {
 		paramObj.setPersonId(tf_personId.getText());
 		paramObj.setGetInDate(dp_getInDate.getValue());
 		paramObj.setOffsetDays(String.valueOf(Period.between(LocalDate.now(), paramObj.getGetInDate()).getDays()));
-		paramObj.setFromStation(cb_fromStation.getValue());
-		paramObj.setToStation(cb_toStation.getValue());
+		paramObj.setFromStation(InitializeUtils.stationProp.getProperty(cb_fromStation.getValue()));
+		paramObj.setToStation(InitializeUtils.stationProp.getProperty(cb_toStation.getValue()));
 		paramObj.setTrainNo(tf_trainNo.getText());
 		paramObj.setOrderQty(tf_orderQty.getText());
 
