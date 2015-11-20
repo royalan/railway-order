@@ -96,8 +96,7 @@ public class JavaFxRailWayOrderService {
 	 * Send verify random image number request.
 	 * @param cookie
 	 * @param reqParamObj
-	 * @param random
-	 *            input number
+	 * @param random input number
 	 * 
 	 * @return message
 	 * @throws Exception
